@@ -15,14 +15,14 @@ const reducer = (state = initialState, action) => {
             }
         case ADD_MOVIE:
             const newMovie = {
-                id: state.movies.length,
+                id: state.movies.filter(movie => movie.id === state.movies.length).length === 0 ? state.movies.length : state.movies.length + 1
+                ,
                 title: action.payload.title,
                 director: action.payload.director,
                 metascore: action.payload.metascore,
                 genre: action.payload.genre,
                 description: action.payload.description
             }
-            console.log(newMovie)
             return {
                 ...state,
                 movies: [...state.movies, newMovie]
